@@ -2,7 +2,7 @@
 id: 4ZLcPdoCZQEpFIZ028gen
 title: Automating seed-tldr
 desc: ''
-updated: 1642857648330
+updated: 1642862280282
 created: 1642850815639
 excerpt: >-
   Incremental automatic updates for seed-tldr: where tldr-pages meet Dendron.
@@ -86,13 +86,15 @@ after the import. We just need to tweak thinks a bit to match the output file
 names. I achieved this with a quick and dirty sed command: `sed -r
 's|pages\/(.+?)\/(.+?)\.md|vault\/\1.\2.md|g'`.
 
-To understand what the sed command does, let's look at a particular example. Let's say that the list of changed files looks like this:
+To understand what the sed command does, let's look at a particular example.
+Let's say that the list of changed files looks like this:
 ```
 pages/common/git-secret.md
 pages/linux/ego.md
 ```
 
-By looking at the `vault/` directory in seed-tldr, we can figure out how Dendron maps those names:
+By looking at the `vault/` directory in seed-tldr, we can figure out how Dendron
+maps those names:
 
 ```
 vault/common.git-secret.md
