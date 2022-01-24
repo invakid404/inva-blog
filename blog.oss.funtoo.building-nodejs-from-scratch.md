@@ -2,11 +2,13 @@
 id: emNwzI1Dq0weEz0eXLEsK
 title: Building Node.js from Scratch
 desc: ''
-updated: 1643056430663
+updated: 1643056512323
 created: 1643044468027
 excerpt: >-
   Funtooizing the Node.js ebuild.
 ---
+
+![nodejs-logo](/assets/images/nodejs-logo.png)
 
 As a Funtoo user who uses [Node.js](https://nodejs.org) at work, I thought it'd
 be great to have the latest and greatest version of Node readily available to
