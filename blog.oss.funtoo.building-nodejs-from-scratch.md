@@ -2,7 +2,7 @@
 id: emNwzI1Dq0weEz0eXLEsK
 title: Building Node.js from Scratch
 desc: ''
-updated: 1643056512323
+updated: 1643056824189
 created: 1643044468027
 excerpt: >-
   Funtooizing the Node.js ebuild.
@@ -228,15 +228,15 @@ This is how our `src_configure` looks now:
 
 ```bash
 src_configure() {
-	configure_options=(
-		# By default, prefix is /usr/local, which is outside of PATH,
-		# set it to /usr instead:
-		--prefix="${EPREFIX}"/usr
-	)
+    configure_options=(
+        # By default, prefix is /usr/local, which is outside of PATH,
+        # set it to /usr instead:
+        --prefix="${EPREFIX}"/usr
+    )
 
-	# NOTE: `econf` default flags appear to trip up the configure process,
-	#       directly call the ./configure script instead.
-	./configure "${configure_options[@]}"
+    # NOTE: `econf` default flags appear to trip up the configure process,
+    #       directly call the ./configure script instead.
+    ./configure "${configure_options[@]}"
 }
 ```
 
