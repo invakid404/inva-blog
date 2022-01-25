@@ -2,7 +2,7 @@
 id: fReYVyqwWjpWNGn8f3hSy
 title: Autogenning Node.js
 desc: ''
-updated: 1643143583461
+updated: 1643143681761
 created: 1643132654642
 excerpt: >-
   Writing an autogen script for Node.js from scratch.
@@ -340,3 +340,7 @@ We now have a script that will always package the latest version of Node for us!
 If this sounds cool, in the future, we'll look into packaging multiple Node
 versions at once, precisely the LTS ones, which is even cooler in my opinion.
 Stay tuned!
+
+As always, the final code can be found somewhere in the commit history of the
+[nodejs-overlay](https://code.funtoo.org/bitbucket/users/invakid404/repos/nodejs-overlay/browse)
+repo.
