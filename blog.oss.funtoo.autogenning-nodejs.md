@@ -2,7 +2,7 @@
 id: fReYVyqwWjpWNGn8f3hSy
 title: Autogenning Node.js
 desc: ''
-updated: 1643143681761
+updated: 1643145212455
 created: 1643132654642
 excerpt: >-
   Writing an autogen script for Node.js from scratch.
@@ -222,7 +222,7 @@ This is basically the whole autogen script! All that's left is to tweak the
 template and test everything out. Let's begin by replacing the hardcoded
 `SRC_URI` with the URI from the tarball artifact:
 
-```jinja
+```bash
 SRC_URI="{{ artifacts[0].src_uri }}"
 ```
 
