@@ -2,11 +2,13 @@
 id: mtOTe8lbUvuixBVzLr9ZE
 title: Enhancing the Node.js Autogen
 desc: ''
-updated: 1643229510805
+updated: 1643230811737
 created: 1643224539828
 excerpt: >-
   Generating ebuilds for all Node.js release channels at once.
 ---
+
+![nodejs-logo-part-3](/assets/images/nodejs-logo-part-3.png)
 
 In the [[previous|blog.oss.funtoo.autogenning-nodejs]] blog post about Node.js,
 we wrote an autogen script for it from scratch. Today, we'll look into extending
