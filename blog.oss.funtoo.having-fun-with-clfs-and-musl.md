@@ -2,7 +2,7 @@
 id: kl74li714iahob4f78rphx0
 title: Having Fun with CLFS and musl
 desc: ''
-updated: 1645651927059
+updated: 1645682163052
 created: 1645649115079
 excerpt: >-
   Experimenting with building a CLFS prefix with musl instead of glibc.
@@ -34,8 +34,8 @@ different architectures, with various package upgrades, etc.
 
 The coolest part about the Evolved Bootstrap, in my opinion, is that it will
 also unlock the doors to alternative init systems, libc implementations,
-compilers, etc. That's why I decided to experiment with replacing musl with
-glibc. The CLFS embedded book already used musl, but as the name may suggest, it
+compilers, etc. That's why I decided to experiment with replacing glibc with
+musl. The CLFS embedded book already used musl, but as the name may suggest, it
 caters to building Linux systems for embedded devices and doesn't cover our use
 case.
 
