@@ -2,7 +2,7 @@
 id: 4ZLcPdoCZQEpFIZ028gen
 title: Automating seed-tldr
 desc: ''
-updated: 1642862280282
+updated: 1656592456743
 created: 1642850815639
 excerpt: >-
   Incremental automatic updates for seed-tldr: where tldr-pages meet Dendron.
@@ -83,14 +83,21 @@ frontmatter fields of all pages, and we don't want that.
 We can easily fix this issue though. Remember, we have the list of changed files
 already, and we can use it to determine which files should have actually changed
 after the import. We just need to tweak thinks a bit to match the output file
-names. I achieved this with a quick and dirty sed command: `sed -r
-'s|pages\/(.+?)\/(.+?)\.md|vault\/\1.\2.md|g'`.
+names. I achieved this with a quick and dirty sed command:
+```bash
+sed -r "
+  s/\.md$//;
+  s/\./-/g;
+  s|(.*)/(.*)/(.*)|vault/\2.\3.md|;
+" 
+```
 
 To understand what the sed command does, let's look at a particular example.
 Let's say that the list of changed files looks like this:
 ```
 pages/common/git-secret.md
 pages/linux/ego.md
+pages/common/gdal2tiles.py.md
 ```
 
 By looking at the `vault/` directory in seed-tldr, we can figure out how Dendron
@@ -99,11 +106,14 @@ maps those names:
 ```
 vault/common.git-secret.md
 vault/linux.ego.md
+vault/common.gdal2tiles-py.md
 ```
 
-Basically, the directory name is concatenated to the file name. This is exactly
-what the sed command does: it matches the directory name and the file name and
-joins them with a dot, also replacing the `pages/` prefix with `vault/`.
+Basically, the directory name is concatenated to the file name, and all dots in
+the file name are replaced with dashes. This is exactly what the sed command
+does: first it removes the `.md` extension, then replaces all dots with dashes,
+and concatenates the folder name and file name, prepending the result with
+`vault/`.
 
 As a final step of this process, we can concatenate the result of all the
 previous commands on a single line, so that we can pass it to an action that
@@ -133,10 +143,18 @@ This is how we end up with all of these steps of the workflow:
       run: |
         FILES=$(cd repos/tldr && git diff --name-only "${OLD_SHA}" "${NEW_SHA}")
         PAGE_FILES=$(echo "${FILES}" | grep '^pages/' | cat)
+
         echo "Changed files:"
         echo "${PAGE_FILES}"
-        VAULT_FILES=$(echo "${PAGE_FILES}" |
-          sed -r 's|pages\/(.+?)\/(.+?)\.md|vault\/\1.\2.md|g')
+
+        VAULT_FILES=$(echo "${PAGE_FILES}" | \
+          sed -r "
+            s/\.md$//;
+            s/\./-/g;
+            s|(.*)/(.*)/(.*)|vault/\2.\3.md|;
+          " 
+        )
+
         echo "::set-output name=FILES::$(echo ${VAULT_FILES} | xargs)"
       env:
         OLD_SHA: ${{ steps.tldr-cached.outputs.SHA }}
